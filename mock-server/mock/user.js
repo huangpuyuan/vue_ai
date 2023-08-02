@@ -1,7 +1,7 @@
 module.exports = [
   // 注册用户
   {
-    url: '/api/users/register',
+    url: '/api/user/register',
     method: 'post',
     response: () => {
       return {
@@ -12,7 +12,7 @@ module.exports = [
 
   // 用户登录
   {
-    url: '/api/users/login',
+    url: '/api/user/login',
     method: 'post',
     response: () => {
       return {
@@ -26,7 +26,7 @@ module.exports = [
 
   // 获取用户信息
   {
-    url: '/api/users/me',
+    url: '/api/user/me',
     method: 'get',
     response: () => {
       return {

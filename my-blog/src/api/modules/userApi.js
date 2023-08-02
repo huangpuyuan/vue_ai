@@ -1,4 +1,4 @@
-import instance from '..axios-instance.js';
+import instance from '../axios-instance.js';
 
 // 注册用户
 export async function registerUser(userData) {

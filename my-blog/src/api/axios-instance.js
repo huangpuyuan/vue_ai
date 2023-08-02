@@ -12,7 +12,10 @@ instance.interceptors.request.use(
   (config) => {
     // 可在此处设置请求头等
     // 例如，添加身份认证的 token
-    // config.headers.Authorization = 'Bearer ' + getToken();
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = 'Bearer ' + token;
+    }
     return config;
   },
   (error) => {
@@ -25,7 +28,17 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     // 可在此处对响应数据进行处理
-    return response.data;
+
+    // response.data的数据结构是{status,data,message}
+    // 根据status是否是'success'进行成功的判断
+    const resData = response.data || {};
+
+    if(resData.status == 'success'){
+      return resData.data;
+    }else{
+      //如果不成功 提示报错
+      return Promise.reject(resData.message);
+    }
   },
   (error) => {
     // 统一处理错误
